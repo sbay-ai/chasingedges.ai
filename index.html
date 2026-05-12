@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chasing Edges — Portfolio</title>
+    <meta name="description" content="Chasing Edges — exploring the frontier where ideas sharpen into impact.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --purple-50: #faf5ff;
+            --purple-100: #f3e8ff;
+            --purple-200: #e9d5ff;
+            --purple-300: #d8b4fe;
+            --purple-400: #c084fc;
+            --purple-500: #a855f7;
+            --purple-600: #9333ea;
+            --purple-700: #7e22ce;
+            --purple-800: #6b21a8;
+            --purple-900: #581c87;
+            --black: #09090b;
+            --gray-900: #18181b;
+            --gray-800: #27272a;
+            --gray-700: #3f3f46;
+            --gray-400: #a1a1aa;
+            --gray-300: #d4d4d8;
+            --white: #fafafa;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--black);
+            color: var(--gray-300);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; color: var(--white); }
+
+        /* ── Animated background ── */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image:
+                linear-gradient(rgba(168, 85, 247, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .bg-glow {
+            position: fixed;
+            top: -40%;
+            left: -20%;
+            width: 80vw;
+            height: 80vw;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.12) 0%, transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+            animation: drift 20s ease-in-out infinite alternate;
+        }
+        @keyframes drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(20vw, 15vh); }
+        }
+
+        /* ── Nav ── */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            padding: 1.25rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+        }
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem; font-weight: 700; color: var(--white);
+            text-decoration: none;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .logo-icon {
+            width: 32px; height: 32px;
+            background: linear-gradient(135deg, var(--purple-500), var(--purple-700));
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem;
+        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            color: var(--gray-400); text-decoration: none; font-size: 0.9rem;
+            font-weight: 500; transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--purple-400); }
+
+        /* ── Sections ── */
+        section { position: relative; z-index: 1; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex; align-items: center;
+            padding-top: 80px;
+        }
+        .hero-content { max-width: 720px; }
+        .hero-tag {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.25);
+            border-radius: 100px;
+            font-size: 0.8rem; font-weight: 500;
+            color: var(--purple-300);
+            margin-bottom: 1.5rem;
+        }
+        .hero-tag .dot {
+            width: 6px; height: 6px;
+            background: var(--purple-400);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--purple-400), var(--purple-200));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray-400);
+            max-width: 540px;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.85rem 1.75rem;
+            border-radius: 10px;
+            font-size: 0.95rem; font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer; border: none;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--purple-600), var(--purple-700));
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(147, 51, 234, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(147, 51, 234, 0.45);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--gray-300);
+            border: 1px solid var(--gray-700);
+        }
+        .btn-outline:hover {
+            border-color: var(--purple-500);
+            color: var(--purple-300);
+        }
+
+        /* ── About ── */
+        .about { padding: 8rem 0; }
+        .section-label {
+            font-size: 0.8rem; font-weight: 600;
+            color: var(--purple-400);
+            text-transform: uppercase; letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+        .about h2 { font-size: 2.2rem; margin-bottom: 1.5rem; }
+        .about p { max-width: 640px; font-size: 1.05rem; line-height: 1.8; color: var(--gray-400); }
+
+        /* ── What I Do ── */
+        .services { padding: 4rem 0 8rem; }
+        .services h2 { font-size: 2.2rem; margin-bottom: 3rem; }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background: rgba(24, 24, 27, 0.6);
+            border: 1px solid var(--gray-800);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        .card:hover {
+            border-color: rgba(168, 85, 247, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(147, 51, 234, 0.08);
+        }
+        .card-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(168, 85, 247, 0.05));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 1.25rem;
+        }
+        .card h3 { font-size: 1.2rem; margin-bottom: 0.75rem; }
+        .card p { font-size: 0.95rem; color: var(--gray-400); line-height: 1.7; }
+
+        /* ── Contact ── */
+        .contact {
+            padding: 8rem 0;
+            text-align: center;
+        }
+        .contact h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .contact p {
+            color: var(--gray-400); font-size: 1.1rem;
+            max-width: 500px; margin: 0 auto 2.5rem;
+        }
+        .contact-links {
+            display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--gray-800);
+            padding: 2rem;
+            text-align: center;
+            color: var(--gray-700);
+            font-size: 0.85rem;
+            position: relative; z-index: 1;
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.25rem; }
+            .nav-links { display: none; }
+            .container { padding: 0 1.25rem; }
+            .hero { min-height: 90vh; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero p { font-size: 1rem; }
+            .about, .services, .contact { padding: 5rem 0; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── Scroll animations ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<!-- Nav -->
+<nav>
+    <a href="#" class="logo">
+        <div class="logo-icon">CE</div>
+        Chasing Edges
+    </a>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-tag">
+                <span class="dot"></span>
+                Available for projects
+            </div>
+            <h1>Finding clarity<br>at the <span class="gradient">edges.</span></h1>
+            <p>I work at the intersection of strategy and execution — turning ambitious ideas into tangible outcomes. Whether it's building products, solving complex problems, or pushing into uncharted territory.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Get in touch →</a>
+                <a href="#services" class="btn btn-outline">See my work</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+    <div class="container fade-up">
+        <div class="section-label">About</div>
+        <h2>The edge is where things get interesting.</h2>
+        <p>I'm Stephen — a builder, strategist, and relentless optimizer. I've spent my career navigating the spaces where convention ends and opportunity begins. I believe the best results come from leaning into complexity, not away from it.</p>
+    </div>
+</section>
+
+<!-- Services -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="section-label fade-up">What I Do</div>
+        <h2 class="fade-up">Capabilities</h2>
+        <div class="card-grid">
+            <div class="card fade-up">
+                <div class="card-icon">⚡</div>
+                <h3>Strategy & Vision</h3>
+                <p>Translating big-picture thinking into actionable roadmaps. I help teams find their edge and build toward it with clarity and conviction.</p>
+            </div>
+            <div class="card fade-up">
+                <div class="card-icon">🔧</div>
+                <h3>Product & Execution</h3>
+                <p>From zero to one and beyond — designing, building, and shipping products that solve real problems and create lasting value.</p>
+            </div>
+            <div class="card fade-up">
+                <div class="card-icon">📊</div>
+                <h3>Growth & Optimization</h3>
+                <p>Data-informed decision making that compounds. I find the levers that matter and pull them with precision.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+    <div class="container fade-up">
+        <div class="section-label">Get in Touch</div>
+        <h2>Let's chase an edge<br><span style="background: linear-gradient(135deg, var(--purple-400), var(--purple-200)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">together.</span></h2>
+        <p>Have a project, an idea, or just want to connect? I'd love to hear from you.</p>
+        <div class="contact-links">
+            <a href="mailto:hello@chasingedges.ai" class="btn btn-primary">hello@chasingedges.ai</a>
+            <a href="https://linkedin.com" target="_blank" class="btn btn-outline">LinkedIn</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    &copy; 2026 Chasing Edges. All rights reserved.
+</footer>
+
+<script>
+    // Scroll-triggered fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
