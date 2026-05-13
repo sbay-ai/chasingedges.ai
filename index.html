@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chasing Edges — Portfolio</title>
-    <meta name="description" content="Chasing Edges — exploring the frontier where ideas sharpen into impact.">
+    <title>Chasing Edges — Keep Up or Get Left Behind</title>
+    <meta name="description" content="Chasing Edges — pushing the world to keep pace with the speed of innovation. AI-powered content, insights, and tools for the acceleration age.">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,32 +42,44 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; color: var(--white); }
+        h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; color: var(--white); }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--purple-400), var(--purple-200));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
         /* ── Animated background ── */
         .bg-grid {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
+            position: fixed; inset: 0; z-index: 0;
             background-image:
                 linear-gradient(rgba(168, 85, 247, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
             background-size: 60px 60px;
         }
         .bg-glow {
-            position: fixed;
-            top: -40%;
-            left: -20%;
-            width: 80vw;
-            height: 80vw;
+            position: fixed; top: -40%; left: -20%;
+            width: 80vw; height: 80vw;
             background: radial-gradient(circle, rgba(147, 51, 234, 0.12) 0%, transparent 60%);
-            z-index: 0;
-            pointer-events: none;
+            z-index: 0; pointer-events: none;
             animation: drift 20s ease-in-out infinite alternate;
+        }
+        .bg-glow-2 {
+            position: fixed; bottom: -30%; right: -20%;
+            width: 60vw; height: 60vw;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.08) 0%, transparent 60%);
+            z-index: 0; pointer-events: none;
+            animation: drift2 25s ease-in-out infinite alternate;
         }
         @keyframes drift {
             0% { transform: translate(0, 0); }
             100% { transform: translate(20vw, 15vh); }
+        }
+        @keyframes drift2 {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-15vw, -10vh); }
         }
 
         /* ── Nav ── */
@@ -90,7 +102,7 @@
             background: linear-gradient(135deg, var(--purple-500), var(--purple-700));
             border-radius: 8px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 0.85rem;
+            font-size: 0.85rem; color: var(--white);
         }
         .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a {
@@ -101,12 +113,36 @@
 
         /* ── Sections ── */
         section { position: relative; z-index: 1; }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        .section-label {
+            font-size: 0.8rem; font-weight: 600;
+            color: var(--purple-400);
+            text-transform: uppercase; letter-spacing: 0.15em;
+            margin-bottom: 1rem;
         }
+
+        /* ── Buttons ── */
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.85rem 1.75rem; border-radius: 10px;
+            font-size: 0.95rem; font-weight: 600;
+            text-decoration: none; transition: all 0.3s;
+            cursor: pointer; border: none;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--purple-600), var(--purple-700));
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(147, 51, 234, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(147, 51, 234, 0.45);
+        }
+        .btn-outline {
+            background: transparent; color: var(--gray-300);
+            border: 1px solid var(--gray-700);
+        }
+        .btn-outline:hover { border-color: var(--purple-500); color: var(--purple-300); }
 
         /* ── Hero ── */
         .hero {
@@ -114,7 +150,7 @@
             display: flex; align-items: center;
             padding-top: 80px;
         }
-        .hero-content { max-width: 720px; }
+        .hero-content { max-width: 780px; }
         .hero-tag {
             display: inline-flex; align-items: center; gap: 0.5rem;
             padding: 0.4rem 1rem;
@@ -137,107 +173,150 @@
         }
         .hero h1 {
             font-size: clamp(2.8rem, 6vw, 4.5rem);
-            line-height: 1.1;
-            font-weight: 700;
+            line-height: 1.08; font-weight: 700;
             margin-bottom: 1.5rem;
         }
-        .hero h1 .gradient {
-            background: linear-gradient(135deg, var(--purple-400), var(--purple-200));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
         .hero p {
-            font-size: 1.2rem;
-            color: var(--gray-400);
-            max-width: 540px;
-            margin-bottom: 2.5rem;
-            line-height: 1.7;
+            font-size: 1.2rem; color: var(--gray-400);
+            max-width: 580px; margin-bottom: 2.5rem; line-height: 1.7;
         }
         .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .btn {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.85rem 1.75rem;
-            border-radius: 10px;
-            font-size: 0.95rem; font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            cursor: pointer; border: none;
+
+        /* ── Ticker ── */
+        .ticker-wrap {
+            overflow: hidden;
+            padding: 2rem 0;
+            border-top: 1px solid var(--gray-800);
+            border-bottom: 1px solid var(--gray-800);
+            position: relative; z-index: 1;
         }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--purple-600), var(--purple-700));
+        .ticker {
+            display: flex; gap: 3rem;
+            animation: scroll-left 30s linear infinite;
+            width: max-content;
+        }
+        .ticker span {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem; font-weight: 600;
+            color: var(--gray-700);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+        }
+        .ticker span .sep { color: var(--purple-700); margin: 0 0.75rem; }
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ── Manifesto ── */
+        .manifesto { padding: 8rem 0; }
+        .manifesto h2 { font-size: 2.4rem; margin-bottom: 1.5rem; max-width: 700px; line-height: 1.2; }
+        .manifesto-body { max-width: 640px; }
+        .manifesto-body p { font-size: 1.05rem; line-height: 1.8; color: var(--gray-400); margin-bottom: 1.25rem; }
+
+        /* ── Stats ── */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 4rem 0 2rem;
+        }
+        .stat {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(24, 24, 27, 0.4);
+            border: 1px solid var(--gray-800);
+            border-radius: 16px;
+        }
+        .stat .number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem; font-weight: 700;
             color: var(--white);
-            box-shadow: 0 4px 20px rgba(147, 51, 234, 0.3);
+            margin-bottom: 0.25rem;
         }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(147, 51, 234, 0.45);
-        }
-        .btn-outline {
-            background: transparent;
-            color: var(--gray-300);
-            border: 1px solid var(--gray-700);
-        }
-        .btn-outline:hover {
-            border-color: var(--purple-500);
-            color: var(--purple-300);
-        }
+        .stat .number .accent { color: var(--purple-400); }
+        .stat .label { font-size: 0.85rem; color: var(--gray-400); }
 
-        /* ── About ── */
-        .about { padding: 8rem 0; }
-        .section-label {
-            font-size: 0.8rem; font-weight: 600;
-            color: var(--purple-400);
-            text-transform: uppercase; letter-spacing: 0.15em;
-            margin-bottom: 1rem;
-        }
-        .about h2 { font-size: 2.2rem; margin-bottom: 1.5rem; }
-        .about p { max-width: 640px; font-size: 1.05rem; line-height: 1.8; color: var(--gray-400); }
-
-        /* ── What I Do ── */
-        .services { padding: 4rem 0 8rem; }
-        .services h2 { font-size: 2.2rem; margin-bottom: 3rem; }
-        .card-grid {
+        /* ── How We Chase ── */
+        .how { padding: 8rem 0; }
+        .how h2 { font-size: 2.2rem; margin-bottom: 3rem; }
+        .pillar-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
-        .card {
+        .pillar {
             background: rgba(24, 24, 27, 0.6);
             border: 1px solid var(--gray-800);
             border-radius: 16px;
             padding: 2rem;
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
-        .card:hover {
+        .pillar::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--purple-600), var(--purple-400));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .pillar:hover {
             border-color: rgba(168, 85, 247, 0.3);
             transform: translateY(-4px);
             box-shadow: 0 8px 30px rgba(147, 51, 234, 0.08);
         }
-        .card-icon {
-            width: 48px; height: 48px;
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(168, 85, 247, 0.05));
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem;
-            margin-bottom: 1.25rem;
+        .pillar:hover::before { opacity: 1; }
+        .pillar-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem; font-weight: 700;
+            color: rgba(168, 85, 247, 0.15);
+            margin-bottom: 0.75rem;
         }
-        .card h3 { font-size: 1.2rem; margin-bottom: 0.75rem; }
-        .card p { font-size: 0.95rem; color: var(--gray-400); line-height: 1.7; }
+        .pillar h3 { font-size: 1.2rem; margin-bottom: 0.75rem; }
+        .pillar p { font-size: 0.95rem; color: var(--gray-400); line-height: 1.7; }
 
-        /* ── Contact ── */
-        .contact {
-            padding: 8rem 0;
-            text-align: center;
+        /* ── Podcasts ── */
+        .podcasts { padding: 8rem 0; }
+        .podcasts h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+        .podcasts-desc { max-width: 640px; font-size: 1.05rem; line-height: 1.8; color: var(--gray-400); margin-bottom: 3rem; }
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 800px;
         }
+        .video-card {
+            background: rgba(24, 24, 27, 0.6);
+            border: 1px solid var(--gray-800);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .video-card:hover {
+            border-color: rgba(168, 85, 247, 0.3);
+            box-shadow: 0 8px 30px rgba(147, 51, 234, 0.08);
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0; overflow: hidden;
+        }
+        .video-wrapper iframe {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; border: none;
+        }
+
+        /* ── CTA / Contact ── */
+        .contact { padding: 8rem 0; text-align: center; }
         .contact h2 { font-size: 2.5rem; margin-bottom: 1rem; }
         .contact p {
             color: var(--gray-400); font-size: 1.1rem;
-            max-width: 500px; margin: 0 auto 2.5rem;
+            max-width: 520px; margin: 0 auto 2.5rem;
         }
-        .contact-links {
-            display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
-        }
+        .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
 
         /* ── Footer ── */
         footer {
@@ -257,26 +336,26 @@
             .hero { min-height: 90vh; }
             .hero h1 { font-size: 2.4rem; }
             .hero p { font-size: 1rem; }
-            .about, .services, .contact { padding: 5rem 0; }
-            .card-grid { grid-template-columns: 1fr; }
+            .stats-bar { grid-template-columns: 1fr; gap: 1rem; }
+            .stat .number { font-size: 2rem; }
+            .manifesto, .how, .podcasts, .contact { padding: 5rem 0; }
+            .pillar-grid { grid-template-columns: 1fr; }
+            .video-grid { grid-template-columns: 1fr; }
         }
 
         /* ── Scroll animations ── */
         .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
+            opacity: 0; transform: translateY(30px);
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
 <div class="bg-grid"></div>
 <div class="bg-glow"></div>
+<div class="bg-glow-2"></div>
 
 <!-- Nav -->
 <nav>
@@ -285,8 +364,9 @@
         Chasing Edges
     </a>
     <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Work</a></li>
+        <li><a href="#manifesto">Manifesto</a></li>
+        <li><a href="#how">How</a></li>
+        <li><a href="#podcasts">Podcasts</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
@@ -297,47 +377,107 @@
         <div class="hero-content">
             <div class="hero-tag">
                 <span class="dot"></span>
-                Available for projects
+                The world is accelerating
             </div>
-            <h1>Finding clarity<br>at the <span class="gradient">edges.</span></h1>
-            <p>I work at the intersection of strategy and execution — turning ambitious ideas into tangible outcomes. Whether it's building products, solving complex problems, or pushing into uncharted territory.</p>
+            <h1>The future doesn't wait.<br><span class="gradient-text">Neither do we.</span></h1>
+            <p>Innovation is outpacing comprehension. We build the bridges between what's emerging and what people need to understand — turning the bleeding edge into common ground.</p>
             <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Get in touch →</a>
-                <a href="#services" class="btn btn-outline">See my work</a>
+                <a href="#podcasts" class="btn btn-primary">Watch the latest episode &darr;</a>
+                <a href="#manifesto" class="btn btn-outline">Read the manifesto</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- About -->
-<section class="about" id="about">
-    <div class="container fade-up">
-        <div class="section-label">About</div>
-        <h2>The edge is where things get interesting.</h2>
-        <p>I'm Stephen — a builder, strategist, and relentless optimizer. I've spent my career navigating the spaces where convention ends and opportunity begins. I believe the best results come from leaning into complexity, not away from it.</p>
+<!-- Ticker -->
+<div class="ticker-wrap">
+    <div class="ticker">
+        <span>Artificial Intelligence<span class="sep">/</span></span>
+        <span>Machine Learning<span class="sep">/</span></span>
+        <span>Generative AI<span class="sep">/</span></span>
+        <span>Autonomous Agents<span class="sep">/</span></span>
+        <span>Neural Networks<span class="sep">/</span></span>
+        <span>Frontier Models<span class="sep">/</span></span>
+        <span>Robotics<span class="sep">/</span></span>
+        <span>Quantum Computing<span class="sep">/</span></span>
+        <span>Synthetic Biology<span class="sep">/</span></span>
+        <span>Edge Computing<span class="sep">/</span></span>
+        <span>Artificial Intelligence<span class="sep">/</span></span>
+        <span>Machine Learning<span class="sep">/</span></span>
+        <span>Generative AI<span class="sep">/</span></span>
+        <span>Autonomous Agents<span class="sep">/</span></span>
+        <span>Neural Networks<span class="sep">/</span></span>
+        <span>Frontier Models<span class="sep">/</span></span>
+        <span>Robotics<span class="sep">/</span></span>
+        <span>Quantum Computing<span class="sep">/</span></span>
+        <span>Synthetic Biology<span class="sep">/</span></span>
+        <span>Edge Computing<span class="sep">/</span></span>
+    </div>
+</div>
+
+<!-- Manifesto -->
+<section class="manifesto" id="manifesto">
+    <div class="container">
+        <div class="section-label fade-up">The Manifesto</div>
+        <h2 class="fade-up">The gap between innovation and understanding is <span class="gradient-text">widening every day.</span></h2>
+        <div class="manifesto-body fade-up">
+            <p>Breakthroughs that once took decades now land in weeks. Models get smarter overnight. Industries reshape before lunch. And most of the world is three news cycles behind.</p>
+            <p>Chasing Edges exists to close that gap. We sit at the frontier — tracking, distilling, and translating the most consequential shifts in technology so that more people can move with the pace of change, not against it.</p>
+            <p>We don't gatekeep. We don't overcomplicate. We take what's emerging at the edge and make it accessible, digestible, and actionable — because the future belongs to those who see it coming.</p>
+        </div>
+        <div class="stats-bar fade-up">
+            <div class="stat">
+                <div class="number">24<span class="accent">/</span>7</div>
+                <div class="label">AI never stops. Neither does the news cycle.</div>
+            </div>
+            <div class="stat">
+                <div class="number">10<span class="accent">x</span></div>
+                <div class="label">The pace of AI progress vs. public understanding.</div>
+            </div>
+            <div class="stat">
+                <div class="number"><span class="accent">&infin;</span></div>
+                <div class="label">The potential when everyone can keep up.</div>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- Services -->
-<section class="services" id="services">
+<!-- How We Chase -->
+<section class="how" id="how">
     <div class="container">
-        <div class="section-label fade-up">What I Do</div>
-        <h2 class="fade-up">Capabilities</h2>
-        <div class="card-grid">
-            <div class="card fade-up">
-                <div class="card-icon">⚡</div>
-                <h3>Strategy & Vision</h3>
-                <p>Translating big-picture thinking into actionable roadmaps. I help teams find their edge and build toward it with clarity and conviction.</p>
+        <div class="section-label fade-up">How We Chase</div>
+        <h2 class="fade-up">Humans source it. <span class="gradient-text">AI shapes it.</span> Everyone benefits.</h2>
+        <div class="pillar-grid">
+            <div class="pillar fade-up">
+                <div class="pillar-number">01</div>
+                <h3>Curate the Signal</h3>
+                <p>Humans handpick the most critical developments, research papers, product launches, and industry shifts from across the AI landscape. No algorithms choosing for you — real editorial judgment on what actually matters.</p>
             </div>
-            <div class="card fade-up">
-                <div class="card-icon">🔧</div>
-                <h3>Product & Execution</h3>
-                <p>From zero to one and beyond — designing, building, and shipping products that solve real problems and create lasting value.</p>
+            <div class="pillar fade-up">
+                <div class="pillar-number">02</div>
+                <h3>Distill with AI</h3>
+                <p>We use the very technology we cover to make it understandable. AI transforms dense, technical source material into podcasts, summaries, and visual breakdowns that anyone can absorb — in minutes, not hours.</p>
             </div>
-            <div class="card fade-up">
-                <div class="card-icon">📊</div>
-                <h3>Growth & Optimization</h3>
-                <p>Data-informed decision making that compounds. I find the levers that matter and pull them with precision.</p>
+            <div class="pillar fade-up">
+                <div class="pillar-number">03</div>
+                <h3>Push It Forward</h3>
+                <p>Every piece of content is designed to move people closer to the edge — not overwhelm them. Whether you're a builder, a leader, or just curious, you leave sharper than you arrived.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Podcasts -->
+<section class="podcasts" id="podcasts">
+    <div class="container">
+        <div class="section-label fade-up">Listen & Watch</div>
+        <h2 class="fade-up">AI Podcasts <span class="gradient-text">by AI.</span></h2>
+        <p class="podcasts-desc fade-up">Humans curate the signal. AI distills it into something you can actually keep up with. The sharpest developments in artificial intelligence — sourced by people, shaped by machines — so you stay ahead of the curve as the future accelerates.</p>
+        <div class="video-grid">
+            <div class="video-card fade-up">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/JqQOtUrcKLs" title="AI Podcast Episode" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
     </div>
@@ -346,9 +486,9 @@
 <!-- Contact -->
 <section class="contact" id="contact">
     <div class="container fade-up">
-        <div class="section-label">Get in Touch</div>
-        <h2>Let's chase an edge<br><span style="background: linear-gradient(135deg, var(--purple-400), var(--purple-200)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">together.</span></h2>
-        <p>Have a project, an idea, or just want to connect? I'd love to hear from you.</p>
+        <div class="section-label">Join the Edge</div>
+        <h2>Stop catching up.<br><span class="gradient-text">Start keeping pace.</span></h2>
+        <p>Want to collaborate, contribute source material, or just stay in the loop? Reach out — the edge is better with more people on it.</p>
         <div class="contact-links">
             <a href="mailto:hello@chasingedges.ai" class="btn btn-primary">hello@chasingedges.ai</a>
             <a href="https://linkedin.com" target="_blank" class="btn btn-outline">LinkedIn</a>
@@ -362,7 +502,6 @@
 </footer>
 
 <script>
-    // Scroll-triggered fade-in animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -370,7 +509,6 @@
             }
         });
     }, { threshold: 0.15 });
-
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 
